@@ -6,7 +6,7 @@ const ChatDapp = () => {
 
   const {} = useContext(ChatDappContext);
   return (
-    <div>Hey </div>
+    <div></div>
   )
 }
 
