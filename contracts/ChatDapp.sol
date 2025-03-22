@@ -96,6 +96,8 @@ contract ChatDapp {
         userList[me].friendList.push(newFriend);
     }
 
+    // GET MY FRIEND
+
     function getMyFriend() external view returns (friend[] memory) {
         return userList[msg.sender].friendList;
     }
