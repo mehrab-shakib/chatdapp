@@ -17,7 +17,7 @@ const NavBar = () => {
   ];
 
   //USE STATE
-  const [active, setActive] = useState(2);
+  const [active, setActive] = useState(1);
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const { account, userName, connectWallet, createAccount, error } =
@@ -118,13 +118,14 @@ const NavBar = () => {
             info="Create your account and start your chat with your friends. You can also create groups and invite your friends."
             smallInfo="Kindly Select your name and wallet address."
             image={images.hero}
-            functionName={createAccount()}
+            functionName={createAccount}
             address= {account}
           />
         </div>
       )}
 
-      {!error == "" ? "" : <Error error={error} />}
+      {error && <Error error={error} />}
+
     </div>
   );
 };

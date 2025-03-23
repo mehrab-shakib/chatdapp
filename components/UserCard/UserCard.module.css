@@ -1,0 +1,92 @@
+/* Main user card container */
+.userCard {
+    background-color: rgba(0, 0, 0, 0.25); 
+    border-radius: 10px; 
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease; 
+}
+
+
+.userCard:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
+}
+
+
+.userCard_box_img {
+    border-radius: 50%; 
+    border: 3px solid #f18303; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); 
+    margin-bottom: 1rem; 
+}
+
+
+.userCard_box_info {
+    line-height: 1.4;
+    padding: 0 1rem;
+    
+}
+
+.userCard_box_info h3 {
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.userCard_box_info p {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+
+.userCard_box_info button {
+    background-color: #f18303; 
+    color: #fff;
+    width: 80%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.userCard_box_info button:hover {
+    background-color: #d77300; 
+}
+
+
+.number {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 1.3rem 1.3rem;
+    border-radius: 50%;
+    background-color: #f18303;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 768px) {
+    .userCard {
+        padding: 1.5rem;
+    }
+
+    .userCard_box_img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .userCard_box_info button {
+        width: 90%;
+    }
+}

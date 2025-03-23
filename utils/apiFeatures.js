@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { ethers, Contract } from "ethers";
 import Web3Modal from "web3modal";
 
 import { ChatDappABI, ChatDappAddress } from "../context/constants";
@@ -32,7 +32,7 @@ export const connectWallet = async () => {
   }
 };
 const fetchContract = (signerOrProvider) => {
-  return new ethers.Contract(ChatDappAddress, ChatDappABI, signerOrProvider);
+  return new Contract(ChatDappAddress, ChatDappABI, signerOrProvider);
 };
 
 export const connectingWithContract = async () => {
@@ -41,7 +41,7 @@ export const connectingWithContract = async () => {
     const connection = await web3Modal.connect();
     const provider = new ethers.BrowserProvider(connection);
 
-    const signer = provider.getSigner();
+    const signer = await provider.getSigner();
     const contract = fetchContract(signer);
 
     return contract; 
@@ -49,6 +49,7 @@ export const connectingWithContract = async () => {
     // Add any additional logic to interact with the contract here
   } catch (error) {
     console.error("Failed to connect with contract:", error);
+    console.log(error);
   }
 };
 

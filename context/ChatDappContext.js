@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { userRouter } from "next/router";
+import { useRouter } from "next/router";
 
 import {
   checkIfWalletConnected,
@@ -23,7 +23,7 @@ export const ChatDappProvider = ({ children }) => {
   const [currentUserName, setCurrentUserName] = useState(null);
   const [currentUserAddress, setCurrentUserAddress] = useState(null);
 
-  const router = userRouter;
+  const router = useRouter();
 
   //FETCH DATAA TIME OF PAGE LOAD
 
@@ -42,9 +42,18 @@ export const ChatDappProvider = ({ children }) => {
       setFriendList(friendList);
       //GET USER LIST
       const userList = await contract.getAllAppUser();
-      setUserList(userList);
+
+      const formattedUserList = userList.map((user, index) => ({
+        index:index,
+        accountAddress: user.accountAddress,
+        name: user.name,
+      }));
+      setUserList(formattedUserList);
+
+      
     } catch (error) {
       setError("Please install and connect your wallet");
+      console.log(error);
     }
   };
 
@@ -64,65 +73,84 @@ export const ChatDappProvider = ({ children }) => {
     }
   };
 
- // CREATE ACCOUNT
-const createAccount = async ({ name, accountAddress } = {}) => {
-  try {
-    if (!name || !accountAddress) return setError("All fields are required");
+  // CREATE ACCOUNT
+  const createAccount = async ({ name, accountAddress }) => {
+    try {
+      // if (name || accountAddress) return setError("All fields are required");
 
-    const contract = await connectingWithContract();
-    const getCreatedUser = await contract.createAccount(name);
-    setLoading(true);
-    await getCreatedUser.wait();
-    setLoading(false);
-    window.location.reload();
-  } catch (error) {
-    setError("Error while creating account");
-  }
-};
+      const contract = await connectingWithContract();
+      const getCreatedUser = await contract.createAccount(name);
+      setLoading(true);
+      await getCreatedUser.wait();
+      setLoading(false);
+      window.location.reload();
+    } catch (error) {
+      setError("Error while creating account");
+      console.log(error);
+    }
+  };
 
-// ADD FRIEND
-const addFriend = async ({ name, accountAddress } = {}) => {
-  try {
-    if (!name || !accountAddress) return setError("All fields are required");
+  // ADD FRIEND
+  const addFriend = async ({ name, accountAddress }) => {
+    try {
+      if (!name || !accountAddress) return setError("All fields are required");
 
-    const contract = await connectingWithContract();
-    const addFriendTx = await contract.addFriend(accountAddress, name);
-    setLoading(true);
-    await addFriendTx.wait();
-    setLoading(false);
-    router.push("/");
-  } catch (error) {
-    setError("Error while adding friend");
-  }
-};
+      const contract = await connectingWithContract();
+      const addFriendTx = await contract.addFriend(accountAddress, name);
+      setLoading(true);
+      await addFriendTx.wait();
+      setLoading(false);
+      router.push("/");
+    } catch (error) {
+      setError("Error while adding friend");
+    }
+  };
 
-// SEND MESSAGE
-const sendMessage = async ({ friendAddress, message } = {}) => {
-  try {
-    if (!message || !friendAddress) return setError("All fields are required");
+  // SEND MESSAGE
+  const sendMessage = async ({ friendAddress, message } = {}) => {
+    try {
+      if (!message || !friendAddress)
+        return setError("All fields are required");
 
-    const contract = await connectingWithContract();
-    const sendMessageTx = await contract.sendMessage(friendAddress, message);
-    setLoading(true);
-    await sendMessageTx.wait();
-    setLoading(false);
-    window.location.reload();
-  } catch (error) {
-    setError("Error while sending message");
-  }
-};
-
+      const contract = await connectingWithContract();
+      const sendMessageTx = await contract.sendMessage(friendAddress, message);
+      setLoading(true);
+      await sendMessageTx.wait();
+      setLoading(false);
+      window.location.reload();
+    } catch (error) {
+      setError("Error while sending message");
+    }
+  };
 
   const readUser = async (userAddress) => {
-    const  contract = await connectingWithContract();
+    const contract = await connectingWithContract();
     const userName = await contract.getUserName(userAddress);
     setCurrentUserAddress(userAddress);
     setCurrentUserName(userName);
-      
-  }
+  };
 
   return (
-    <ChatDappContext.Provider value={{ readMessage, createAccount, addFriend, sendMessage, readUser, connectWallet, checkIfWalletConnected, account, userName, friendList, userList, friendMsgs, loading, error, currentUserName, currentUserAddress }}>
+    <ChatDappContext.Provider
+      value={{
+        readMessage,
+        createAccount,
+        addFriend,
+        sendMessage,
+        readUser,
+        connectWallet,
+        checkIfWalletConnected,
+        account,
+        userName,
+        friendList,
+        userList,
+        friendMsgs,
+        loading,
+        error,
+        currentUserName,
+        currentUserAddress,
+      }}
+    >
       {children}
     </ChatDappContext.Provider>
   );
