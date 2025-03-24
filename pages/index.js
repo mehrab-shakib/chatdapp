@@ -1,12 +1,16 @@
 import React, {useEffect, useState, useContext} from 'react'
 
 import { ChatDappContext } from '../context/ChatDappContext'
+import {Filter, Friend} from '../components/index'
 
 const ChatDapp = () => {
 
-  const {} = useContext(ChatDappContext);
+  // const {} = useContext(ChatDappContext);
   return (
-    <div></div>
+    <div>
+      <Filter />
+      <Friend />
+    </div>
   )
 }
 

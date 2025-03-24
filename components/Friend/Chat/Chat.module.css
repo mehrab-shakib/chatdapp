@@ -1,0 +1,136 @@
+.chat {
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 1rem;
+    overflow-y: scroll;
+    max-height: 85vh;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+  
+  .chat_user_info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .chat_user_info_box h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+  }
+  
+  .chat_user_info_box p {
+    color: #ffffff;
+    font-size: 0.9rem;
+    word-break: break-all;
+  }
+  
+  .chat_box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 55vh;
+    width: 90%;
+    margin: 0 auto;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 0.8rem;
+    scroll-behavior: smooth;
+  }
+  
+  .chat_box_left_title {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+    color: #fff;
+  }
+  
+  .chat_box_left_p {
+    background-color: #9e7546;
+    padding: 0.8rem 1rem;
+    border-radius: 0.8rem 0.8rem 0.8rem 0.2rem;
+    color: #ffffff;
+    margin: 0.3rem 0;
+    max-width: 60%;
+    word-break: break-word;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .chat_box_right_p {
+    background-color: #4f8cd3;
+    padding: 0.8rem 1rem;
+    border-radius: 0.8rem 0.8rem 0.2rem 0.8rem;
+    color: #fff;
+    margin: 0.3rem 0;
+    align-self: flex-end;
+    max-width: 60%;
+    word-break: break-word;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .chat_box_send {
+    width: 90%;
+    margin: 1rem auto 0;
+  }
+  
+  .chat_box_send_img {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 0.7rem 1rem;
+    border-radius: 0.8rem;
+  }
+  
+  .chat_box_send_img input {
+    flex: 1;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding: 0.8rem 1rem;
+    color: #eee;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .chat_box_send_img input::placeholder {
+    color: #aaa;
+  }
+  
+  .chat_box_send_img img {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .chat_box_send_img img:hover {
+    transform: scale(1.1);
+  }
+  
+  .show {
+    word-break: break-word;
+    color: #ccc;
+  }
+  
+  @media only screen and (max-width: 35em) {
+    .chat {
+      padding: 1rem;
+    }
+  
+    .chat p {
+      font-size: 0.85rem;
+    }
+  
+    .chat small {
+      font-size: 0.75rem;
+    }
+  
+    .show {
+      display: none;
+    }
+  }
+  

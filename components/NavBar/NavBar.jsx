@@ -17,7 +17,7 @@ const NavBar = () => {
   ];
 
   //USE STATE
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(2);
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const { account, userName, connectWallet, createAccount, error } =

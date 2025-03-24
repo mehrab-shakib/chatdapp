@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { ethers } from "ethers";
 
 import {
   checkIfWalletConnected,
@@ -39,20 +40,24 @@ export const ChatDappProvider = ({ children }) => {
       setUserName(userName);
       //GET FRIEND LIST
       const friendList = await contract.getMyFriend();
-      setFriendList(friendList);
+      const formattedFriendList = friendList.map((friend, index) => ({
+        index: index,
+        accountAddress: friend.pubkey, // Correct field name
+        name: friend.name,
+      }));
+      setFriendList(formattedFriendList);
+
       //GET USER LIST
       const userList = await contract.getAllAppUser();
 
       const formattedUserList = userList.map((user, index) => ({
-        index:index,
+        index: index,
         accountAddress: user.accountAddress,
         name: user.name,
       }));
       setUserList(formattedUserList);
-
-      
     } catch (error) {
-      setError("Please install and connect your wallet");
+      // setError("Please install and connect your wallet");
       console.log(error);
     }
   };
@@ -67,9 +72,19 @@ export const ChatDappProvider = ({ children }) => {
     try {
       const contract = await connectingWithContract();
       const read = await contract.readMessage(friendAddress);
-      setFriendMsgs(read);
+
+      // Format the data properly
+      const formattedMessages = read.map((msg) => ({
+        senderAddress: msg[0],
+        timestamp: Number(msg[1]), // Convert BigInt to Number
+        message: msg[2],
+      }));
+
+      setFriendMsgs(formattedMessages);
+      console.log(formattedMessages); // Check the cleaned structure
     } catch (error) {
-      setError("You don't have Friends!");
+      console.log(error);
+      // setError("You dont have any messages!");
     }
   };
 
@@ -109,21 +124,25 @@ export const ChatDappProvider = ({ children }) => {
   // SEND MESSAGE
   const sendMessage = async ({ friendAddress, message } = {}) => {
     try {
-      if (!message || !friendAddress)
-        return setError("All fields are required");
+      // if (!message || !friendAddress)
+      //   return setError("All fields are required");
+
+      const address = ethers.getAddress(friendAddress);
 
       const contract = await connectingWithContract();
-      const sendMessageTx = await contract.sendMessage(friendAddress, message);
+      const sendMessageTx = await contract.sendMessage(address, message);
       setLoading(true);
       await sendMessageTx.wait();
       setLoading(false);
       window.location.reload();
     } catch (error) {
       setError("Error while sending message");
+      console.log(error);
     }
   };
 
   const readUser = async (userAddress) => {
+    console.log(userAddress);
     const contract = await connectingWithContract();
     const userName = await contract.getUserName(userAddress);
     setCurrentUserAddress(userAddress);

@@ -56,7 +56,7 @@ contract ChatDapp {
         require(checkUserExists(friend_key), "User not registered");
         require(msg.sender != friend_key, "Cannot add yourself as a friend");
         require(
-            checkAlreadyFriends(friend_key, msg.sender),
+            !checkAlreadyFriends(friend_key, msg.sender),
             "Already a friend"
         );
 
