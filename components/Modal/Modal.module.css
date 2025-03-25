@@ -13,13 +13,14 @@
 
 .modal_box_right h1 {
     font-size: 3rem;
-    color: #F18303;
+    color: #ffffff;
     line-height: 0.9;
 
 }
 .modal_box_right h1 span {
     font-size: 5rem;
     display: block;
+    color: #9df6f8;
    
 }
 .modal_box_right p {
@@ -30,7 +31,7 @@
 
 .modal_box_right small {
     font-size: 1.2rem;
-    color: #c19d74;
+    color: #abe6ff;
     margin-top: 20px;
 }
 
@@ -51,7 +52,7 @@
     background-color: transparent;
     outline: none;
     border: none;
-    color: #F18303;
+    color: #9df6f8;
 }
 
 .modal_box_right_name_btn {
@@ -64,10 +65,11 @@
 
     outline: none;
     border: none;
-    color: #F18303;
+    color: #9df6f8;
     font-size: 1.2rem;
     font-weight: 700;
-    text-transform: uppercase;
+   
+    font-family: 'Poppins', sans-serif;
     background-color: rgba(0, 0, 0, 0.25);
     padding : 1rem; 
     border-radius: 0.5rem;

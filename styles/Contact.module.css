@@ -1,0 +1,90 @@
+.wrapper {
+    display: flex;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    gap: 40px;
+  }
+  
+  .left {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profileImageWrapper {
+    margin-bottom: 20px;
+  }
+  
+  .profileImage {
+    border-radius: 50%;
+  }
+  
+  .name {
+    margin: 5px 0;
+    font-size: 1.8rem;
+  }
+  
+  .description {
+    text-align: center;
+    font-size: 1rem;
+    color: #8b949e;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+  
+  .right {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .contactCard {
+    width: 100%;
+    padding: 25px;
+    background-color: #161b22;
+    border-radius: 10px;
+    border: 1px solid #30363d;
+  }
+  
+  .cardTitle {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+    color: #c9d1d9;
+  }
+  
+  .contactList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .contactItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1rem;
+    color: #c9d1d9;
+    transition: color 0.3s ease;
+  }
+  
+  .contactItem a, .contactItem span {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .contactItem:hover {
+    color: #58a6ff;
+  }
+  
+  .icon {
+    font-size: 1.3rem;
+  }
+  

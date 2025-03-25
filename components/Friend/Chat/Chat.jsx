@@ -2,6 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
+//Icons
+import { FaSmile } from "react-icons/fa";
+import{TiAttachment} from "react-icons/ti"
+import {BsFillSendFill } from "react-icons/bs"
+
+
 import style from "./Chat.module.css";
 import { ChatDappContext } from "@/context/ChatDappContext";
 import { Modal } from "../../index";
@@ -75,7 +81,7 @@ const Chat = ({
                       />
                       <span className="style.">
                         {" "}
-                        {chatData.name} {"nn"}{" "}
+                        {chatData.name} {""}{""}
                         <small>Sent {convertTime(item.timestamp)}</small>{" "}
                       </span>
                     </div>
@@ -111,22 +117,21 @@ const Chat = ({
         {currentUserName && currentUserAddress ? (
           <div className={style.chat_box_send}>
             <div className={style.chat_box_send_img}>
-              <Image src={images.smile} alt="smile" width={30} height={30} />
+              <FaSmile color="#9df6f8"  size={35} className={style.chat_box_send_img_bttns}  />
               <input
                 type="text"
                 placeholder="Type a message..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
-              <Image src={images.file} alt="file" width={50} height={50} />
+             {/* <TiAttachment  size={35} color="#9df6f8"/> */}
               {Loading == true ? (
                 <Loader />
               ) : (
-                <Image
-                  src={images.send}
-                  alt="file"
-                  width={50}
-                  height={50}
+                <BsFillSendFill
+                  color="#9df6f8"
+                  size= {35}
+                  className={style.chat_box_send_img_bttns}
                   onClick={() =>
                     functionName({
                       friendAddress: chatData.accountAddress,

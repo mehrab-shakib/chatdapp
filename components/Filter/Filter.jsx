@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 
+//Icons 
+import { IoSearch } from "react-icons/io5";
+import { BsBackspaceReverseFill, BsPersonFillAdd } from "react-icons/bs";
+
 import style from "./Filter.module.css";
 import images from "../../assets";
 import { ChatDappContext } from "../../context/ChatDappContext";
@@ -16,19 +20,19 @@ const Filter = () => {
       <div className={style.filter_box}>
         <div className={style.filter_box_left}>
           <div className={style.filter_box_left_search}>
-            <Image src={images.search} alt="search" width={20} height={20} />
+          <IoSearch size={20} color="#9df6f8" />
             <input type="text" placeholder="Search..." />
           </div>
         </div>
         <div className={style.filter_box_right}>
           <button>
             {" "}
-            <Image src={images.clear} alt="clear" width={20} height={20} />
+            <BsBackspaceReverseFill size={20} color="#9df6f8" />
             Clear Chat
           </button>
           <button onClick={() => setAddFriends(true)}>
             {" "}
-            <Image src={images.user} alt="add friend" width={20} height={20} />
+            <BsPersonFillAdd size={20} color="#9df6f8" />
             Add Friend
           </button>
         </div>

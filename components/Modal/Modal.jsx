@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 
+//Icons
+import { IoIosSend } from "react-icons/io";
+import { FaUserAlt, FaWallet } from "react-icons/fa";
+import { MdCancel } from "react-icons/md";
+
 import Style from "./Modal.module.css";
 import images from "../../assets";
 import { ChatDappContext } from "@/context/ChatDappContext";
@@ -40,12 +45,8 @@ const Modal = ({
           ) : (
             <div className={Style.modal_box_right_name}>
               <div className={Style.modal_box_right_name_info}>
-                <Image
-                  src={images.username}
-                  alt="user"
-                  width={30}
-                  height={30}
-                />
+                
+                <FaUserAlt size={30} color="#9df6f8" />
                 <input
                   type="text"
                   placeholder="Your name"
@@ -53,7 +54,7 @@ const Modal = ({
                 />
               </div>
               <div className={Style.modal_box_right_name_info}>
-                <Image src={images.account} alt="user" width={30} height={30} />
+              <FaWallet  size={30} color="#9df6f8"/>
                 <input
                   type="text"
                   placeholder={address || "Enter Address"}
@@ -65,14 +66,17 @@ const Modal = ({
                 <button onClick={() => functionName({ name, accountAddress })}>
                   {" "}
                   {""}{" "}
-                  <Image src={images.send} alt="send" width={30} height={30} />{" "}
+                  
+                  <IoIosSend size={30} />
+                  
+                  {" "}
                   Submit{" "}
                 </button>
 
                 <button onClick={() => openBox(false)}>
                   {" "}
                   {""}{" "}
-                  <Image src={images.close} alt="send" width={30} height={30} />{" "}
+                  <MdCancel size={30} color="#9df6f8" />{" "}
                   Cancel{" "}
                 </button>
               </div>

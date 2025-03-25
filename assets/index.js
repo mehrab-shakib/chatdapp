@@ -1,4 +1,4 @@
-import logo from "./logo.png";
+import logo from "./logo_large.png";
 import close from "./close.png";
 import open from "./open.png";
 import search from "./search.png";
@@ -29,6 +29,7 @@ import image7 from "./img7.gif";
 import image8 from "./img8.gif";
 import image9 from "./img9.gif";
 import image10 from "./img10.gif";
+import profile from "./gs.png"
 
 export default {
   logo,
@@ -62,4 +63,5 @@ export default {
   image8,
   image9,
   image10,
+  profile,
 };

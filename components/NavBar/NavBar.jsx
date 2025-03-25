@@ -3,6 +3,11 @@ import React, { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+//Icons
+import { IoMdAdd } from "react-icons/io";
+import { IoMenuOutline } from "react-icons/io5";
+import { IoIosCloseCircle } from "react-icons/io";
+
 import Style from "./Navbar.module.css";
 import { ChatDappContext } from "@/context/ChatDappContext";
 import { Modal, Error } from "../index";
@@ -12,7 +17,7 @@ const NavBar = () => {
   const menuItems = [
     { menu: "All Users", link: "alluser" },
     { menu: "Chat", link: "/" },
-    { menu: "Contacts", link: "/" },
+    { menu: "Contacts", link: "contact" },
     { menu: "Terms of Use", link: "/" },
   ];
 
@@ -27,7 +32,7 @@ const NavBar = () => {
     <div className={Style.NavBar}>
       <div className={Style.NavBar_box}>
         <div className={Style.NavBar_box_left}>
-          <Image src={images.logo} alt="logo" width={50} height={50} />
+          <Image src={images.logo} alt="logo" width={300} height={75} />
         </div>
         <div className={Style.NavBar_box_right}>
           {/* DESKTOP */}
@@ -52,14 +57,14 @@ const NavBar = () => {
 
           {/* MOBILE */}
           {open && (
-            <div className={Style.mobile_menu}>
+            <div className={`${Style.mobile_menu}${open ? "_show" : ""}`}>
               {menuItems.map((item, index) => (
                 <div
                   onClick={() => setActive(index + 1)}
                   key={index + 1}
                   className={`${Style.mobile_menu_items} ${
-                    active === index + 1 ? Style.active_btn : ""}`
-                    }
+                    active === index + 1 ? Style.active_btn : ""
+                  }`}
                 >
                   <Link
                     className={Style.mobile_menu_items_link}
@@ -70,11 +75,9 @@ const NavBar = () => {
                 </div>
               ))}
               <p className={Style.mobile_menu_btn}>
-                <Image
-                  src={images.close}
-                  alt="close"
-                  width={20}
-                  height={20}
+                <IoIosCloseCircle
+                  size={20}
+                  color="#9df6f8"
                   onClick={() => setOpen(false)}
                 />
               </p>
@@ -88,13 +91,24 @@ const NavBar = () => {
                 <span>Connect Wallet</span>
               </button>
             ) : (
-              <button onClick={() => setOpenModal(true)}>
-                <Image
-                  src={userName ? images.accountName : images.create}
-                  alt="Account Image"
-                  width={20}
-                  height={20}
-                />
+              <button
+                onClick={() => {
+                  console.log("Create Account Clicked");
+                 
+                  setOpenModal(true);
+                  console.log(openModal)
+                }}
+              >
+                {userName ? (
+                  <Image
+                    src={images.accountName}
+                    alt="Account Image"
+                    width={20}
+                    height={20}
+                  />
+                ) : (
+                  <IoMdAdd size={20} />
+                )}
                 <small>{userName || "Create Account"}</small>
               </button>
             )}
@@ -104,13 +118,13 @@ const NavBar = () => {
             className={Style.NavBar_box_right_open}
             onClick={() => setOpen(true)}
           >
-            <Image src={images.open} alt="menu" width={30} height={30} />
+            <IoMenuOutline size={20} color="#9df6f8" />
           </div>
         </div>
       </div>
       {/* MODAL COMPONENT */}
       {openModal && (
-        <div className={Style.modalBox}>
+        <div className={`${Style.modalBox} ${openModal ? Style.show : ""}`}>
           <Modal
             openBox={setOpenModal}
             title="Welcome to"
@@ -119,13 +133,12 @@ const NavBar = () => {
             smallInfo="Kindly Select your name and wallet address."
             image={images.hero}
             functionName={createAccount}
-            address= {account}
+            address={account}
           />
         </div>
       )}
 
       {error && <Error error={error} />}
-
     </div>
   );
 };
