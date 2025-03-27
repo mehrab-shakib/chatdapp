@@ -1,40 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 🗨️ Decentralized Chat Application
 
-## Getting Started
+A decentralized real-time chat application built with **Next.js, Solidity, Hardhat, and ethers.js**. This dApp enables users to chat securely on the blockchain, integrate MetaMask for authentication, and perform real-time transactions.
 
-First, run the development server:
+## 🚀 Features
+- 🔹 **Real-Time Chat** – Decentralized messaging between users.
+- 🔹 **MetaMask Integration** – Login and authenticate via Ethereum wallet.
+- 🔹 **Real-Time Transactions** – Store messages on the blockchain with timestamps.
+- 🔹 **Friends List** – Add and manage friends.
+- 🔹 **Decentralized** – Messages are stored on Ethereum, ensuring security and privacy.
 
+---
+
+## 📸 Screenshots
+
+![Screenshot 2025-03-25 144233](https://github.com/user-attachments/assets/1069b41c-b4d8-47ed-961e-9305f5592e7b)
+![Screenshot 2025-03-25 144306](https://github.com/user-attachments/assets/fd18aee0-4845-4e5d-8149-171cb3c53702)
+![Screenshot 2025-03-25 144214](https://github.com/user-attachments/assets/11434f08-f24e-4af4-9869-85da5f652228)
+
+![Screenshot 2025-03-25 144224](https://github.com/user-attachments/assets/f6ed2d49-f5c4-4aa2-94f5-e549b286eb41)
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js, CSS, ethers.js
+- **Backend**: Solidity (Smart Contracts)
+- **Blockchain Development**: Hardhat, Alchemy
+
+---
+
+## 📌 Prerequisites
+
+Ensure you have the following installed:
+
+- Node.js (v16+ recommended)
+- MetaMask Extension
+- Hardhat
+- An Ethereum testnet (Goerli, Sepolia, or Local Hardhat node)
+
+---
+
+## 🏗️ Installation & Setup
+
+Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/mehrab-shakib/chatdapp.git
+cd chatdapp
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+---
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## 📜 Deploying Smart Contract Locally
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+1️⃣ **Start a Local Blockchain**
+```bash
+npx hardhat node
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2️⃣ **Deploy the Smart Contract**
+```bash
+npx hardhat run scripts/deploy.js --network localhost
+```
 
-## Learn More
+3️⃣ **Copy the Contract Address** from the terminal output and update it in the frontend `constants.js` file.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## 🚀 Running the Frontend
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Start the Next.js development server:
+```bash
+npm run dev
+```
 
-## Deploy on Vercel
+Visit `http://localhost:3000` in your browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+## 🌍 Deploying to Testnet (Goerli/Sepolia)
+
+1️⃣ **Update `hardhat.config.js`** with your Alchemy/Infura API key and private key.
+
+2️⃣ Deploy to a testnet:
+```bash
+npx hardhat run scripts/deploy.js --network goerli
+```
+
+3️⃣ Update the frontend with the deployed contract address.
+
+---
+
+## 🎬 Live Demo
+
+🔗 **[Live Demo](chatdapp-xi.vercel.app)** 
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repo
+2. Create a new branch (`feature-xyz`)
+3. Commit your changes
+4. Open a PR
+
+---
+
+
+## 📬 Contact
+
+- **GitHub**: [My GitHub Profile](https://github.com/mehrab-shakib)
+- **LinkedIn**: [Mehrab Hossain Shakib](www.linkedin.com/in/mehrab-hossain-shakib-4b4293242)
+- **Email**: shakibmehrab@gmail.com
